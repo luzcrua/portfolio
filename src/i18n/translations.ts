@@ -143,19 +143,20 @@ export const translations = {
 // Define a type for our translations structure
 type TranslationType = {
   home: string;
-  why: {
-    title: string;
-    sections: Array<{
-      title: string;
-      description: string;
-    }>;
-  };
+  why: string;
   portfolio: string;
   contact: string;
   hero: {
     title: string;
     subtitle: string;
     cta: string;
+  };
+  why: {
+    title: string;
+    sections: Array<{
+      title: string;
+      description: string;
+    }>;
   };
   socialLinks: {
     title: string;
