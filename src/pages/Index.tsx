@@ -4,6 +4,8 @@ import Header from "@/components/Header";
 import Hero from "@/components/Hero";
 import WhyWebsite from "@/components/WhyWebsite";
 import SocialLinks from "@/components/SocialLinks";
+import WebsiteShowcase from "@/components/WebsiteShowcase";
+import ContactLink from "@/components/ContactLink";
 import Footer from "@/components/Footer";
 import { useTheme } from "@/context/ThemeContext";
 
@@ -39,7 +41,9 @@ const Index: React.FC = () => {
       <main>
         <Hero />
         <WhyWebsite />
+        <WebsiteShowcase />
         <SocialLinks />
+        <ContactLink />
       </main>
       <Footer />
     </div>
