@@ -32,14 +32,14 @@ const demoWebsites = [
     description: "Blog para empresa com design personalizado",
   },
   {
-    image: "/placeholder.svg",
-    title: "Site Institucional",
-    description: "Presença online profissional para pequena empresa",
+    image: "/sitequiz.png",
+    title: "Site Quiz",
+    description: "Quiz Fitness para corredores com objetivo de conversão",
   },
   {
-    image: "/placeholder.svg",
-    title: "Landing Page",
-    description: "Página de conversão para produto digital",
+    image: "/saas dentista.png",
+    title: "SaaS para Dentistas",
+    description: "Sistema que ajuda pacientes e conecta a profissionais",
   },
 ];
 
