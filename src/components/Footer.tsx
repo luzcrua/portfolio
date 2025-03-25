@@ -30,7 +30,7 @@ const Footer: React.FC = () => {
       
       {/* Designer credit */}
       <div className="mt-6 text-center text-xs text-muted-foreground/70">
-        Projetado por <a 
+        Idealizado por <a 
           href="https://arinelson.space/contato" 
           target="_blank" 
           rel="noopener noreferrer"
