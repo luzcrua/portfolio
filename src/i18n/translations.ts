@@ -140,23 +140,65 @@ export const translations = {
   }
 };
 
-// Hook para obter traduções com base no idioma atual
+// Define a type for our translations structure
+type TranslationType = {
+  home: string;
+  why: {
+    title: string;
+    sections: Array<{
+      title: string;
+      description: string;
+    }>;
+  };
+  portfolio: string;
+  contact: string;
+  hero: {
+    title: string;
+    subtitle: string;
+    cta: string;
+  };
+  socialLinks: {
+    title: string;
+    description: string;
+  };
+  footer: {
+    rights: string;
+    madeWith: string;
+  };
+  theme: string;
+  language: string;
+};
+
+type TranslationsType = {
+  [key: string]: TranslationType;
+};
+
+// Hook to get translations based on current language
 export function useTranslation(language: string) {
   const t = (key: string) => {
-    // Permite acessar chaves aninhadas como "hero.title"
+    // Allow accessing nested keys like "hero.title"
     const keys = key.split('.');
-    let value = translations[language as keyof typeof translations];
+    const langObj = translations[language as keyof typeof translations] as any;
     
+    if (!langObj) {
+      console.warn(`Language "${language}" not found`);
+      return key;
+    }
+    
+    let value: any = langObj;
+    
+    // Navigate through the nested keys
     for (const k of keys) {
       if (value && typeof value === 'object' && k in value) {
-        value = value[k as keyof typeof value];
+        value = value[k];
       } else {
-        // Retorna a chave se a tradução não for encontrada
+        // Return the key if translation not found
+        console.warn(`Translation key "${key}" not found for language "${language}"`);
         return key;
       }
     }
     
-    return value as string;
+    return value;
   };
 
   return { t };

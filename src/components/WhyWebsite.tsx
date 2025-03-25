@@ -14,6 +14,9 @@ const WhyWebsite: React.FC = () => {
     threshold: 0.1,
   });
 
+  // Get the sections array from translations
+  const whySections = t("why.sections");
+
   return (
     <section
       id="why"
@@ -29,7 +32,7 @@ const WhyWebsite: React.FC = () => {
         </h2>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {t("why.sections").map((section: any, index: number) => (
+          {Array.isArray(whySections) && whySections.map((section, index) => (
             <div
               key={index}
               className={cn(
