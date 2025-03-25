@@ -27,7 +27,7 @@ const demoWebsites = [
     description: "Site de notícias com sistema de gerenciamento de conteúdo",
   },
   {
-    image: "/placeholder.svg",
+    image: "/cconecte-svg.png",
     title: "Blog Corporativo",
     description: "Blog para empresa com design personalizado",
   },
