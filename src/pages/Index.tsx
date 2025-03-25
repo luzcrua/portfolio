@@ -35,6 +35,30 @@ const Index: React.FC = () => {
     return () => document.removeEventListener('click', handleAnchorClick);
   }, []);
 
+  // Add preconnect for external resources
+  useEffect(() => {
+    // Add preconnect links for better performance
+    const preconnectLinks = [
+      { rel: 'preconnect', href: 'https://fonts.googleapis.com' },
+      { rel: 'preconnect', href: 'https://fonts.gstatic.com', crossOrigin: 'anonymous' }
+    ];
+    
+    preconnectLinks.forEach(linkData => {
+      const link = document.createElement('link');
+      link.rel = linkData.rel;
+      link.href = linkData.href;
+      if (linkData.crossOrigin) {
+        link.crossOrigin = linkData.crossOrigin;
+      }
+      document.head.appendChild(link);
+    });
+    
+    return () => {
+      // Clean up preconnect links when component unmounts
+      document.querySelectorAll('link[rel="preconnect"]').forEach(el => el.remove());
+    };
+  }, []);
+
   return (
     <div className="min-h-screen flex flex-col">
       <Header />

@@ -3,6 +3,7 @@ import React from "react";
 import { Heart } from "lucide-react";
 import { useTheme } from "@/context/ThemeContext";
 import { useTranslation } from "@/i18n/translations";
+import { cn } from "@/lib/utils";
 
 const Footer: React.FC = () => {
   const { language } = useTheme();
@@ -25,6 +26,18 @@ const Footer: React.FC = () => {
           <span>{t("footer.madeWith")}</span>
           <Heart className="h-4 w-4 fill-red-500 text-red-500" />
         </div>
+      </div>
+      
+      {/* Designer credit */}
+      <div className="mt-6 text-center text-xs text-muted-foreground/70">
+        Projetado por <a 
+          href="https://arinelson.space/contato" 
+          target="_blank" 
+          rel="noopener noreferrer"
+          className="hover:text-primary transition-colors duration-300 underline underline-offset-2"
+        >
+          Arinelson Santos
+        </a>
       </div>
     </footer>
   );
