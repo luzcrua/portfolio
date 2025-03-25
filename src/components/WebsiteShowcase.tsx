@@ -41,6 +41,11 @@ const demoWebsites = [
     title: "SaaS para Dentistas",
     description: "Sistema que ajuda pacientes e conecta a profissionais",
   },
+  {
+    image: "/hublinks.png",
+    title: "HubLinks",
+    description: "Link da bio personalizado",
+  },
 ];
 
 const WebsiteShowcase: React.FC = () => {
