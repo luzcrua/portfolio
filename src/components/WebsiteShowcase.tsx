@@ -17,14 +17,14 @@ import { Card, CardContent } from "@/components/ui/card";
 // Exemplos de sites que podem ser substituídos pelo usuário
 const demoWebsites = [
   {
-    image: "/placeholder.svg",
-    title: "E-commerce",
-    description: "Loja online com sistema de pagamento integrado",
+    image: "/sitemultilingue.png",
+    title: "Landing Page",
+    description: "Página de conversão para produto digital para 6 idiomas",
   },
   {
-    image: "/placeholder.svg",
-    title: "Portal de Notícias",
-    description: "Site de notícias com sistema de gerenciamento de conteúdo",
+    image: "/neurofit.png",
+    title: "Nicho Fitness",
+    description: "Site para treinamento fitness que integra o corpo e mente",
   },
   {
     image: "/cconecte-svg.png",
