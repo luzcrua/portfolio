@@ -15,7 +15,8 @@ const WhyWebsite: React.FC = () => {
   });
 
   // Get the sections array from translations
-  const whySections = t("why.sections");
+  const whySections = t("whySection.sections");
+  const whyTitle = t("whySection.title");
 
   return (
     <section
@@ -28,7 +29,7 @@ const WhyWebsite: React.FC = () => {
           "text-4xl md:text-5xl font-bold text-center mb-16 transition-opacity duration-700",
           inView ? "opacity-100" : "opacity-0"
         )}>
-          <span className="text-gradient">{t("why.title")}</span>
+          <span className="text-gradient">{whyTitle}</span>
         </h2>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">

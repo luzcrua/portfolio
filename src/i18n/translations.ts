@@ -10,7 +10,7 @@ export const translations = {
       "subtitle": "Transforme sua presença online com um portfólio que impressiona",
       "cta": "Conheça Mais"
     },
-    "why": {
+    "whySection": {
       "title": "Por Que Ter um Site?",
       "sections": [
         {
@@ -56,7 +56,7 @@ export const translations = {
       "subtitle": "Transform your online presence with a portfolio that impresses",
       "cta": "Learn More"
     },
-    "why": {
+    "whySection": {
       "title": "Why Have a Website?",
       "sections": [
         {
@@ -102,7 +102,7 @@ export const translations = {
       "subtitle": "Transforma tu presencia en línea con un portafolio que impresiona",
       "cta": "Conozca Más"
     },
-    "why": {
+    "whySection": {
       "title": "¿Por Qué Tener un Sitio Web?",
       "sections": [
         {
@@ -151,7 +151,7 @@ type TranslationType = {
     subtitle: string;
     cta: string;
   };
-  why: {
+  whySection: {
     title: string;
     sections: Array<{
       title: string;
