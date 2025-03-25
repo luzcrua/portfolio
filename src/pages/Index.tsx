@@ -5,8 +5,11 @@ import Hero from "@/components/Hero";
 import WhyWebsite from "@/components/WhyWebsite";
 import SocialLinks from "@/components/SocialLinks";
 import Footer from "@/components/Footer";
+import { useTheme } from "@/context/ThemeContext";
 
 const Index: React.FC = () => {
+  const { language } = useTheme();
+  
   // Smooth scroll implementation for anchor links
   useEffect(() => {
     const handleAnchorClick = (e: MouseEvent) => {

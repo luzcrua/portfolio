@@ -1,167 +1,78 @@
 
-import React, { useState } from "react";
+import React from "react";
 import { useInView } from "react-intersection-observer";
 import { cn } from "@/lib/utils";
-import { 
-  Briefcase, 
-  Instagram, 
-  Github, 
-  Linkedin, 
-  Twitter, 
-  Youtube,
-  Plus,
-  Check,
-  ExternalLink
-} from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Github, Twitter, Linkedin, Instagram, Globe } from "lucide-react";
+import { useTheme } from "@/context/ThemeContext";
+import { useTranslation } from "@/i18n/translations";
 
-interface LinkItemProps {
-  platform: string;
-  icon: React.ReactNode;
-  placeholder: string;
-  delay: string;
-}
-
-const LinkItem: React.FC<LinkItemProps> = ({ platform, icon, placeholder, delay }) => {
-  const [url, setUrl] = useState("");
-  const [isEditing, setIsEditing] = useState(true);
-  const [isSaved, setIsSaved] = useState(false);
-
-  const handleSave = () => {
-    if (url) {
-      setIsEditing(false);
-      setIsSaved(true);
-      
-      setTimeout(() => {
-        setIsSaved(false);
-      }, 2000);
-    }
-  };
-
-  return (
-    <div className={cn(
-      "glass p-5 rounded-xl transition-all duration-300",
-      "hover:shadow-lg hover:-translate-y-1",
-      `animate-fade-up ${delay}`
-    )}>
-      <div className="flex items-center justify-between mb-4">
-        <div className="flex items-center gap-3">
-          <div className="p-2 rounded-lg bg-primary/10 text-primary">
-            {icon}
-          </div>
-          <h3 className="font-medium">{platform}</h3>
-        </div>
-        
-        {!isEditing && url && (
-          <a 
-            href={url.startsWith('http') ? url : `https://${url}`} 
-            target="_blank" 
-            rel="noopener noreferrer"
-            className="text-primary hover:text-primary/80 transition-colors"
-          >
-            <ExternalLink className="h-5 w-5" />
-          </a>
-        )}
-      </div>
-      
-      {isEditing ? (
-        <div className="flex gap-2">
-          <input
-            type="text"
-            value={url}
-            onChange={(e) => setUrl(e.target.value)}
-            placeholder={placeholder}
-            className="flex-1 px-3 py-2 rounded-lg bg-white/70 border border-gray-200 focus:outline-none focus:ring-2 focus:ring-primary/30"
-          />
-          <button
-            onClick={handleSave}
-            className="p-2 rounded-lg bg-primary text-white hover:bg-primary/90 transition-colors"
-            disabled={!url}
-          >
-            <Check className="h-5 w-5" />
-          </button>
-        </div>
-      ) : (
-        <div className="flex justify-between items-center">
-          <span className="text-foreground/80 truncate max-w-[180px]">
-            {url}
-          </span>
-          <button
-            onClick={() => setIsEditing(true)}
-            className="text-xs text-primary hover:text-primary/80 transition-colors"
-          >
-            Edit
-          </button>
-        </div>
-      )}
-      
-      {isSaved && (
-        <div className="mt-2 text-sm text-green-600 flex items-center gap-1">
-          <Check className="h-3 w-3" /> Saved
-        </div>
-      )}
-    </div>
-  );
-};
+// Esta lista é um exemplo e deve ser personalizada pelo usuário
+const demoLinks = [
+  { icon: <Github />, label: "Github", url: "#" },
+  { icon: <Twitter />, label: "Twitter", url: "#" },
+  { icon: <Linkedin />, label: "LinkedIn", url: "#" },
+  { icon: <Instagram />, label: "Instagram", url: "#" },
+  { icon: <Globe />, label: "Website", url: "#" },
+];
 
 const SocialLinks: React.FC = () => {
+  const { language } = useTheme();
+  const { t } = useTranslation(language);
+  
   const { ref, inView } = useInView({
-    threshold: 0.1,
     triggerOnce: true,
+    threshold: 0.1,
   });
 
-  const [links, setLinks] = useState([
-    { platform: "Portfolio", icon: <Briefcase className="h-5 w-5" />, placeholder: "yourportfolio.com" },
-    { platform: "LinkedIn", icon: <Linkedin className="h-5 w-5" />, placeholder: "linkedin.com/in/username" },
-    { platform: "GitHub", icon: <Github className="h-5 w-5" />, placeholder: "github.com/username" },
-    { platform: "Instagram", icon: <Instagram className="h-5 w-5" />, placeholder: "instagram.com/username" },
-    { platform: "Twitter", icon: <Twitter className="h-5 w-5" />, placeholder: "twitter.com/username" },
-    { platform: "YouTube", icon: <Youtube className="h-5 w-5" />, placeholder: "youtube.com/c/channel" },
-  ]);
-
   return (
-    <section id="portfolio" className="section-padding bg-white">
-      <div className="container mx-auto max-w-6xl">
-        <div 
-          ref={ref}
-          className={cn(
-            "text-center mb-16 max-w-3xl mx-auto",
-            inView ? "animate-fade-up" : "opacity-0"
-          )}
-        >
-          <span className="inline-block py-1 px-3 rounded-full text-sm font-medium bg-primary/10 text-primary mb-4">
-            Portfolio Links
-          </span>
-          <h2 className="text-3xl md:text-4xl font-bold mb-6 text-balance">
-            Connect With My <span className="text-gradient">Work</span>
-          </h2>
-          <p className="text-lg text-foreground/80 mb-8 text-balance">
-            Add links to your portfolio and social media platforms to showcase your work and connect with your audience.
-          </p>
-        </div>
+    <section
+      id="portfolio"
+      ref={ref}
+      className="py-20 px-6 md:px-8 lg:px-12 relative"
+    >
+      <div className="max-w-7xl mx-auto">
+        <h2 className={cn(
+          "text-4xl md:text-5xl font-bold text-center transition-opacity duration-700",
+          inView ? "opacity-100" : "opacity-0"
+        )}>
+          <span className="text-gradient">{t("socialLinks.title")}</span>
+        </h2>
 
-        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {links.map((link, index) => (
-            <LinkItem
+        <p className={cn(
+          "text-xl text-muted-foreground text-center max-w-2xl mx-auto mt-6 mb-12 transition-opacity duration-700 delay-100",
+          inView ? "opacity-100" : "opacity-0"
+        )}>
+          {t("socialLinks.description")}
+        </p>
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          {demoLinks.map((link, index) => (
+            <a
               key={index}
-              platform={link.platform}
-              icon={link.icon}
-              placeholder={link.placeholder}
-              delay={`animate-delay-${(index % 6) * 100}`}
-            />
+              href={link.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className={cn(
+                "group",
+                inView
+                  ? "opacity-100 translate-y-0"
+                  : "opacity-0 translate-y-10",
+                {
+                  "transition-delay-100": index % 3 === 0,
+                  "transition-delay-200": index % 3 === 1,
+                  "transition-delay-300": index % 3 === 2,
+                }
+              )}
+            >
+              <div className="bg-card h-full rounded-xl p-8 border border-border shadow-md transition-all duration-300 hover:shadow-xl hover:-translate-y-1 flex flex-col items-center justify-center gap-4 text-center">
+                <div className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center text-primary group-hover:scale-110 transition-transform">
+                  {link.icon}
+                </div>
+                <h3 className="text-2xl font-bold">{link.label}</h3>
+              </div>
+            </a>
           ))}
-          
-          {/* Add custom link option */}
-          <div className={cn(
-            "glass p-5 rounded-xl flex flex-col items-center justify-center text-center min-h-[146px]",
-            "cursor-pointer hover:bg-primary/5 transition-all",
-            "border-2 border-dashed border-primary/20 hover:border-primary/40",
-            "animate-fade-up animate-delay-600"
-          )}>
-            <div className="p-2 rounded-full bg-primary/10 text-primary mb-3">
-              <Plus className="h-5 w-5" />
-            </div>
-            <p className="text-sm text-foreground/70">Add Custom Link</p>
-          </div>
         </div>
       </div>
     </section>
