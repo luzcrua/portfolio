@@ -16,7 +16,7 @@ const ContactLink: React.FC = () => {
   });
 
   // Você pode mudar o link do contato aqui
-  const contactLink = "#";
+  const contactLink = "https://arinelson.space/contato";
 
   return (
     <section
